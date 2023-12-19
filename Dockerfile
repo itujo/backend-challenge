@@ -13,11 +13,11 @@ RUN npm install
 # Copia os arquivos do projeto
 COPY . .
 
-# Roda drizzle
-RUN npx drizzle-kit generate:pg
-
 # Compila os arquivos TypeScript
 RUN npm run build
+
+# Aplica as migrations
+RUN npm run migrate
 
 # Abre a porta que o Express vai usar
 EXPOSE 3000

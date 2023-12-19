@@ -1,0 +1,1 @@
+ALTER TABLE "users" ADD COLUMN "balance" numeric(19, 4) NOT NULL;

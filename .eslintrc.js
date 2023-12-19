@@ -22,6 +22,8 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 'error',
+    "@typescript-eslint/strict-boolean-expressions": 0
+
   },
   ignorePatterns: ['node_modules/', 'dist/', '**/*.js', 'data/', '*.config.ts']
 };

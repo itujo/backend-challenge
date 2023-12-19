@@ -4,10 +4,10 @@ import databaseEnv from '../../main/config/environments/database';
 import * as schema from './schema';
 
 const {
-  postgres: { username, password, db },
+  postgres: { username, password, db, host },
 } = databaseEnv;
 
-const databaseUrl = `postgres://${username}:${password}@0.0.0.0:5432/${db}`;
+const databaseUrl = `postgres://${username}:${password}@${host}:5432/${db}`;
 
 const migrationConn = postgres(databaseUrl, { max: 1 });
 
