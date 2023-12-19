@@ -1,8 +1,8 @@
 import { type Router, type Request, type Response } from 'express';
-import { DepositController } from '../../application/deposit/deposit-controller';
 import { authMiddleware } from '../middlewares/auth-middleware';
 import { validateMiddleware } from '../middlewares';
 import { DepositSchema } from '../../application/validators';
+import { DepositController } from '../../application/controllers';
 
 export default (router: Router): void => {
   const depositController = new DepositController();

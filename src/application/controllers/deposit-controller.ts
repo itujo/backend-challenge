@@ -1,6 +1,6 @@
 import { type Response } from 'express';
-import { DepositService } from '../../domain/services';
 import { type AuthRequest } from '../../@types/express';
+import { DepositService } from '../../domain/services';
 
 export class DepositController {
   private readonly depositService: DepositService;

@@ -1,7 +1,7 @@
 import { type Router, type Request, type Response } from 'express';
-import { AuthController } from '../../application/auth';
 import { validateMiddleware } from '../middlewares';
 import { CreateUserSchema, LoginSchema } from '../../application/validators';
+import { AuthController } from '../../application/controllers';
 
 export default (router: Router): void => {
   const authController = new AuthController();

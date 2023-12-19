@@ -33,4 +33,10 @@ export class UserRepository {
       .where(eq(users.id, userId))
       .returning();
   }
+
+  async getBalance(userId: number): Promise<number | undefined> {
+    const user = await this.findUserById(userId);
+
+    return Number(user?.balance);
+  }
 }

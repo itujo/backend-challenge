@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { UserService } from '../../domain/services';
+import { UserService } from '.';
 import env from '../../main/config/environments/application';
 
 export class AuthService {
