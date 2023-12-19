@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "lib": ["es2023"],
+    "module": "CommonJS",
+    "target": "es2022",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "Node",
+    "outDir": "dist",
+    "removeComments": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "baseUrl": ".",
+  },
+  "include": ["./src"],
+  "exclude": ["node_modules", "dist", "**/*.js"]
+}

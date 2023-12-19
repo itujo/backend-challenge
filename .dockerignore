@@ -1,0 +1,9 @@
+# files
+Dockerfile
+.dockerignore
+.prettierrc
+.eslintrc.js
+
+# folders
+dist/
+node_modules/
