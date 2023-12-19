@@ -1,4 +1,4 @@
-import { type User } from 'src/domain/entities/user';
+import { type User } from '../../domain/entities';
 import { dbClient } from '../database';
 import { users } from '../database/schema';
 

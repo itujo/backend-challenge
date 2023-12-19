@@ -217,4 +217,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Not used folder
+data/
+
 # End of https://www.toptal.com/developers/gitignore/api/node,dotenv,macos,linux,windows
