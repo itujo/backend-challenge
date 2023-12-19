@@ -1,3 +1,4 @@
+import { eq } from 'drizzle-orm';
 import { type User } from '../../domain/entities';
 import { dbClient } from '../database';
 import { users } from '../database/schema';
@@ -13,5 +14,23 @@ export class UserRepository {
     });
 
     return user;
+  }
+
+  async findUserById(id: number): Promise<User | undefined> {
+    const user = await dbClient.query.users.findFirst({
+      where: (users, { eq }) => eq(users.id, id),
+    });
+
+    return user;
+  }
+
+  async depositMoney(userId: number, amount: number): Promise<User[]> {
+    console.log({ userId, amount });
+
+    return await dbClient
+      .update(users)
+      .set({ balance: amount.toString() })
+      .where(eq(users.id, userId))
+      .returning();
   }
 }

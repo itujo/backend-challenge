@@ -13,7 +13,8 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
   },
-  "include": ["./src"],
+  "include": ["src/**/*", "src/@types/*"],
   "exclude": ["node_modules", "dist", "**/*.js"]
 }

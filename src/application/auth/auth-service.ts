@@ -13,7 +13,9 @@ export class AuthService {
     const user = await this.userService.validateUser(email, password);
     if (!user) throw new Error('Invalid credentials');
 
-    const token = jwt.sign({ id: user.id }, env.jwtSecret, { expiresIn: '7d' });
+    const token = jwt.sign({ userId: user.id }, env.jwtSecret, {
+      expiresIn: '7d',
+    });
     return token;
   }
 
