@@ -1,3 +1,4 @@
+import 'express-async-errors';
 import express from 'express';
 import { readdirSync } from 'fs';
 import { type Server } from 'http';
