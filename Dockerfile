@@ -13,6 +13,9 @@ RUN npm install
 # Copia os arquivos do projeto
 COPY . .
 
+# Roda drizzle
+RUN npx drizzle-kit generate:pg
+
 # Compila os arquivos TypeScript
 RUN npm run build
 
@@ -20,4 +23,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Comando para iniciar a aplicação
-CMD ["node", "dist/server.js"]
+CMD ["node", "dist/main/server.js"]

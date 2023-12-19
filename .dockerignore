@@ -7,3 +7,5 @@ Dockerfile
 # folders
 dist/
 node_modules/
+data/
+.vscode
