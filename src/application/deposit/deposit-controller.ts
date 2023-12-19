@@ -20,7 +20,7 @@ export class DepositController {
 
       await this.depositService.deposit(userId, +amount);
 
-      res.status(201).json({ message: 'Depósito realizado com sucesso.' });
+      res.status(201).json({ message: `Successfully deposited R$${amount}` });
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
