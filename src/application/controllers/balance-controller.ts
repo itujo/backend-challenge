@@ -11,16 +11,8 @@ export class BalanceController {
   async handle(req: AuthRequest, res: Response): Promise<void> {
     const userId = req.user?.userId;
 
-    try {
-      if (!userId) {
-        throw new Error('user not found');
-      }
+    const balance = await this.balanceService.getBalance(userId);
 
-      const balance = await this.balanceService.getBalance(userId);
-
-      res.status(201).json({ balance });
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
-    }
+    res.status(201).json({ balance });
   }
 }

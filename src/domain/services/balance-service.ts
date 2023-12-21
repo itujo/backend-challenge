@@ -6,7 +6,7 @@ export class BalanceService {
     this.userRepository = new UserRepository();
   }
 
-  async getBalance(userId: number): Promise<number | undefined> {
+  async getBalance(userId?: number): Promise<number | undefined> {
     return await this.userRepository.getBalance(userId);
   }
 }

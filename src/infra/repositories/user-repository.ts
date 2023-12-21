@@ -46,7 +46,10 @@ export class UserRepository {
     return updatedUser;
   }
 
-  async getBalance(userId: number): Promise<number> {
+  async getBalance(userId?: number): Promise<number> {
+    if (!userId || !Number.isInteger(userId)) {
+      throw new ApplicationError('user not found', 404);
+    }
     const user = await this.findUserById(userId);
     if (!user) throw new ApplicationError('user not found', 404);
     return Number(user.balance);
