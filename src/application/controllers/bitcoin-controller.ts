@@ -27,4 +27,10 @@ export class BitcoinController {
 
     res.status(204).send();
   }
+
+  async getTotalVolumeToday(_req: AuthRequest, res: Response): Promise<void> {
+    const totalVolume = await this.bitcoinService.getTodayVolume();
+
+    res.status(200).json(totalVolume);
+  }
 }

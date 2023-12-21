@@ -46,4 +46,38 @@ export class TransactionRepository {
       throw new Error('Error retrieving transactions: ' + error.message);
     }
   }
+
+  async findTotalBitcoinVolumeByDay(
+    date: Date,
+  ): Promise<{ totalBought: string; totalSold: string }> {
+    try {
+      const startOfDay = new Date(date.setHours(0, 0, 0, 0));
+      const endOfDay = new Date(date.setHours(23, 59, 59, 999));
+
+      const dailyTransactions = await dbClient.query.transactions.findMany({
+        where: and(
+          gte(transactions.date, startOfDay),
+          lte(transactions.date, endOfDay),
+        ),
+      });
+
+      const totalBought = dailyTransactions
+        .filter((t) => t.type === 'purchase')
+        .reduce((sum, t) => sum + +t.amount, 0);
+
+      const totalSold = dailyTransactions
+        .filter((t) => t.type === 'sale')
+        .reduce((sum, t) => sum + +t.amount, 0);
+
+      return {
+        totalBought: totalBought.toFixed(8),
+        totalSold: totalSold.toFixed(8),
+      };
+    } catch (error: any) {
+      throw new ApplicationError(
+        'error retrieving bitcoin volume: ' + error.message,
+        400,
+      );
+    }
+  }
 }

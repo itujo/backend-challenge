@@ -88,4 +88,9 @@ export class BitcoinService {
       amountInBRL,
     );
   }
+
+  async getTodayVolume(): Promise<{ totalBought: string; totalSold: string }> {
+    const today = new Date();
+    return await this.transactionService.findTotalBitcoinVolumeByDay(today);
+  }
 }

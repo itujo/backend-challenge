@@ -30,4 +30,10 @@ export class TransactionService {
       };
     });
   }
+
+  async findTotalBitcoinVolumeByDay(
+    date: Date,
+  ): Promise<{ totalBought: string; totalSold: string }> {
+    return await this.transactionRepository.findTotalBitcoinVolumeByDay(date);
+  }
 }
