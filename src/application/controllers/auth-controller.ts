@@ -14,21 +14,13 @@ export class AuthController {
       email: string;
       password: string;
     };
-    try {
-      const newUser = await this.authService.register(name, email, password);
-      res.status(201).json(newUser);
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
-    }
+    const newUser = await this.authService.register(name, email, password);
+    res.status(201).json(newUser);
   }
 
   async loginUser(req: Request, res: Response): Promise<void> {
     const { email, password } = req.body as { email: string; password: string };
-    try {
-      const token = await this.authService.login(email, password);
-      res.status(200).json({ token });
-    } catch (error: any) {
-      res.status(401).json({ message: error.message });
-    }
+    const token = await this.authService.login(email, password);
+    res.status(200).json({ token });
   }
 }

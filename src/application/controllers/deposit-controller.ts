@@ -15,12 +15,12 @@ export class DepositController {
 
     try {
       if (!userId) {
-        throw new Error('Usuário não encontrado.');
+        throw new Error('user not found');
       }
 
       await this.depositService.deposit(userId, +amount);
 
-      res.status(201).json({ message: `Successfully deposited R$${amount}` });
+      res.status(201).json({ message: `successfully deposited R$${amount}` });
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }

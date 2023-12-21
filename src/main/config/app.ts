@@ -1,9 +1,9 @@
-import 'express-async-errors';
 import express from 'express';
 import { readdirSync } from 'fs';
 import { type Server } from 'http';
 import path from 'path';
 import env from './environments/application';
+import { type ApplicationError } from '../../shared/errors';
 
 export class App {
   public readonly app: express.Express;
@@ -31,11 +31,12 @@ export class App {
   ): express.Response {
     if (env.mode === 'development') {
       console.log(error);
-      return res.status(Number((error as any)?.statusCode) ?? 400).json({
+    }
+    return res
+      .status(Number((error as ApplicationError)?.statusCode) ?? 400)
+      .json({
         error: error.message,
       });
-    }
-    return res.status(500).json({ error: error.message });
   }
 
   async setupRoutes(): Promise<this> {

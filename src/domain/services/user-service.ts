@@ -1,6 +1,7 @@
 import { UserRepository } from '../../infra/repositories';
 import argon2 from 'argon2';
 import { type User } from '../entities';
+import { ApplicationError } from '../../shared/errors';
 
 export class UserService {
   private readonly userRepository: UserRepository;
@@ -9,29 +10,43 @@ export class UserService {
     this.userRepository = new UserRepository();
   }
 
+  private async hashPassword(password: string): Promise<string> {
+    return await argon2.hash(password);
+  }
+
   async createUser(
     name: string,
     email: string,
     plainPassword: string,
-  ): Promise<User | undefined> {
-    const hashedPassword = await argon2.hash(plainPassword);
+  ): Promise<User> {
+    const hashedPassword = await this.hashPassword(plainPassword);
     const userData: User = {
       name,
       email,
       password: hashedPassword,
       balance: '0.00',
     };
-    const user = (await this.userRepository.createUser(userData)).at(0);
+
+    const user = await this.userRepository.createUser(userData);
+    if (!user) {
+      throw new ApplicationError('user not created', 400);
+    }
+
     return user;
   }
 
-  async validateUser(email: string, password: string): Promise<false | User> {
+  async validateUser(email: string, password: string): Promise<User> {
     const user = await this.userRepository.findUserByEmail(email);
 
-    if (!user) return false;
+    if (!user) {
+      throw new ApplicationError('invalid credentials', 401);
+    }
 
     const isPasswordValid = await argon2.verify(user.password, password);
+    if (!isPasswordValid) {
+      throw new ApplicationError('invalid credentials', 401);
+    }
 
-    return isPasswordValid ? user : false;
+    return user;
   }
 }

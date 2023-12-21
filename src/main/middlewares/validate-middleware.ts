@@ -9,7 +9,7 @@ export const validateMiddleware = (schema: z.ZodSchema) => {
       next();
     } catch (error: any) {
       res.status(400).json({
-        message: error.issues || 'failed to validate data.',
+        message: error.issues || 'failed to validate data',
       });
     }
   };

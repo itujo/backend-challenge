@@ -11,7 +11,7 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<string> {
     const user = await this.userService.validateUser(email, password);
-    if (!user) throw new Error('Invalid credentials');
+    if (!user) throw new Error('invalid credentials');
 
     const token = jwt.sign({ userId: user.id }, env.jwtSecret, {
       expiresIn: '7d',
