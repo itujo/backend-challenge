@@ -1,12 +1,9 @@
 import { type Response } from 'express';
 import { type AuthRequest } from '../../@types/express';
-import { DepositService } from '../../domain/services';
+import { type DepositService } from '../../domain/services';
 
 export class DepositController {
-  private readonly depositService: DepositService;
-  constructor() {
-    this.depositService = new DepositService();
-  }
+  constructor(private readonly depositService: DepositService) {}
 
   async handle(req: AuthRequest, res: Response): Promise<void> {
     const { amount } = req.body;

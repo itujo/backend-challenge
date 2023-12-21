@@ -6,10 +6,10 @@ import {
 } from 'express';
 import { validateMiddleware } from '../middlewares';
 import { CreateUserSchema, LoginSchema } from '../../application/validators';
-import { AuthController } from '../../application/controllers';
+import { createAuthController } from '../factories/application/controllers/auth-controller-factory';
 
 export default (router: Router): void => {
-  const authController = new AuthController();
+  const authController = createAuthController();
 
   router.post(
     '/account',

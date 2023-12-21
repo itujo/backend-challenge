@@ -1,14 +1,10 @@
-import { UserRepository } from '../../infra/repositories';
+import { type UserRepository } from '../../infra/repositories';
 import argon2 from 'argon2';
 import { type User } from '../entities';
 import { ApplicationError } from '../../shared/errors';
 
 export class UserService {
-  private readonly userRepository: UserRepository;
-
-  constructor() {
-    this.userRepository = new UserRepository();
-  }
+  constructor(private readonly userRepository: UserRepository) {}
 
   private async hashPassword(password: string): Promise<string> {
     return await argon2.hash(password);

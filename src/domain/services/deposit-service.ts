@@ -1,12 +1,9 @@
 import { ApplicationError } from '../../shared/errors';
-import { UserRepository } from '../../infra/repositories';
+import { type UserRepository } from '../../infra/repositories';
 import { type User } from '../entities';
 
 export class DepositService {
-  private readonly userRepository: UserRepository;
-  constructor() {
-    this.userRepository = new UserRepository();
-  }
+  constructor(private readonly userRepository: UserRepository) {}
 
   async deposit(userId: number, amount: number): Promise<User> {
     const user = await this.userRepository.findUserById(userId);

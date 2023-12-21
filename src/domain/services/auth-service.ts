@@ -1,13 +1,9 @@
 import jwt from 'jsonwebtoken';
-import { UserService } from '.';
+import { type UserService } from '.';
 import env from '../../main/config/environments/application';
 
 export class AuthService {
-  private readonly userService: UserService;
-
-  constructor() {
-    this.userService = new UserService();
-  }
+  constructor(private readonly userService: UserService) {}
 
   async login(email: string, password: string): Promise<string> {
     const user = await this.userService.validateUser(email, password);

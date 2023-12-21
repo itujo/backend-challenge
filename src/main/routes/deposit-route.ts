@@ -7,10 +7,10 @@ import {
 import { authMiddleware } from '../middlewares/auth-middleware';
 import { validateMiddleware } from '../middlewares';
 import { DepositSchema } from '../../application/validators';
-import { DepositController } from '../../application/controllers';
+import { createDepositController } from '../factories/application/controllers/deposit-controller-factory';
 
 export default (router: Router): void => {
-  const depositController = new DepositController();
+  const depositController = createDepositController();
 
   router.post(
     '/account/deposit',

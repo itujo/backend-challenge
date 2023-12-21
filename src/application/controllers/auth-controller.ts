@@ -1,12 +1,8 @@
 import { type Request, type Response } from 'express';
-import { AuthService } from '../../domain/services/auth-service';
+import { type AuthService } from '../../domain/services/auth-service';
 
 export class AuthController {
-  private readonly authService: AuthService;
-
-  constructor() {
-    this.authService = new AuthService();
-  }
+  constructor(private readonly authService: AuthService) {}
 
   async registerUser(req: Request, res: Response): Promise<void> {
     const { name, email, password } = req.body as {

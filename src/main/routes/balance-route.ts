@@ -5,10 +5,10 @@ import {
   type NextFunction,
 } from 'express';
 import { authMiddleware } from '../middlewares/auth-middleware';
-import { BalanceController } from '../../application/controllers';
+import { createBalanceController } from '../factories/application/controllers/balance-controller-factory';
 
 export default (router: Router): void => {
-  const balanceController = new BalanceController();
+  const balanceController = createBalanceController();
 
   router.get(
     '/account/balance',
