@@ -28,9 +28,6 @@ export class UserService {
     };
 
     const user = await this.userRepository.createUser(userData);
-    if (!user) {
-      throw new ApplicationError('user not created', 400);
-    }
 
     return user;
   }

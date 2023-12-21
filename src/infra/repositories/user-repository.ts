@@ -6,19 +6,16 @@ import { ApplicationError } from '../../shared/errors';
 
 export class UserRepository {
   async createUser(userData: User): Promise<User> {
-    try {
-      const [returnUser] = await dbClient
-        .insert(users)
-        .values(userData)
-        .returning();
-      if (!returnUser) throw new ApplicationError('user not created', 400);
-      return returnUser;
-    } catch (error: any) {
-      if (error.code === '23505') {
-        throw new ApplicationError('user already exists', 400);
-      }
-      throw new ApplicationError('user not created', 500);
+    const user = await this.findUserByEmail(userData.email);
+    if (user) {
+      throw new ApplicationError('user already exists', 400);
     }
+    const [returnUser] = await dbClient
+      .insert(users)
+      .values(userData)
+      .returning();
+    if (!returnUser) throw new ApplicationError('user not created', 400);
+    return returnUser;
   }
 
   async findUserByEmail(email: string): Promise<User | undefined> {
