@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const PurchaseBitcoinSchema = z.object({
+export const BitcoinSchema = z.object({
   amount: z
     .number()
     .nonnegative('amount should be greater than 0')

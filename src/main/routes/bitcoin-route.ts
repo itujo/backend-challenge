@@ -6,7 +6,7 @@ import {
 } from 'express';
 import { createBitcoinController } from '../factories/application/controllers';
 import { authMiddleware, validateMiddleware } from '../middlewares';
-import { PurchaseBitcoinSchema } from '../../application/validators';
+import { BitcoinSchema } from '../../application/validators';
 import { createInvestmentPositionController } from '../factories/application/controllers/investment-position-controller-factory';
 
 export default (router: Router): void => {
@@ -16,9 +16,18 @@ export default (router: Router): void => {
   router.post(
     '/btc/purchase',
     authMiddleware,
-    validateMiddleware(PurchaseBitcoinSchema),
+    validateMiddleware(BitcoinSchema),
     (req: Request, res: Response, next: NextFunction) => {
-      bitcoinController.handle(req, res).catch(next);
+      bitcoinController.handlePurchase(req, res).catch(next);
+    },
+  );
+
+  router.post(
+    '/btc/sell',
+    authMiddleware,
+    validateMiddleware(BitcoinSchema),
+    (req: Request, res: Response, next: NextFunction) => {
+      bitcoinController.handleSale(req, res).catch(next);
     },
   );
 

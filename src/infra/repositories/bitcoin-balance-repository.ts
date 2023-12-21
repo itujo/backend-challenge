@@ -28,6 +28,30 @@ export class BitcoinBalanceRepository {
     }
   }
 
+  async sell(userId: number, removedBalance: number): Promise<BitcoinBalance> {
+    try {
+      const { balance: currentBalance } = await this.getBalance(userId);
+
+      const newBalanceInBTC = +currentBalance - removedBalance;
+
+      const [updatedBalance] = await dbClient
+        .update(bitcoinBalances)
+        .set({ balance: newBalanceInBTC.toString() })
+        .where(eq(bitcoinBalances.userId, userId))
+        .returning();
+
+      if (!updatedBalance) {
+        throw new ApplicationError('balance update failed', 400);
+      }
+
+      return updatedBalance;
+    } catch (error: any) {
+      console.log(error);
+
+      throw new ApplicationError('failed to update balance', 500);
+    }
+  }
+
   async getBalance(userId: number): Promise<BitcoinBalance> {
     const balance = await dbClient.query.bitcoinBalances.findFirst({
       where: eq(bitcoinBalances.userId, userId),

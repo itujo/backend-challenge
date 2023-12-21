@@ -18,7 +18,7 @@ export class BitcoinService {
     private readonly cryptoQuoteService: CryptoQuoteService,
   ) {}
 
-  async purchaseBitcoin(userId: number, amount: number): Promise<boolean> {
+  async purchaseBitcoin(userId: number, amount: number): Promise<void> {
     const user = await this.userRepository.findUserById(userId);
     if (!user) throw new ApplicationError('User not found', 404);
 
@@ -51,7 +51,41 @@ export class BitcoinService {
       amount,
       amountInBTC,
     );
+  }
 
-    return true;
+  async sellBitcoin(userId: number, amountInBTC: number): Promise<void> {
+    const user = await this.userRepository.findUserById(userId);
+    const bitcoinBalance =
+      await this.bitcoinBalanceRepository.getBalance(userId);
+
+    if (!user || !bitcoinBalance)
+      throw new ApplicationError('User not found', 404);
+    if (+bitcoinBalance.balance < amountInBTC)
+      throw new ApplicationError('Insufficient bitcoin balance', 400);
+
+    const {
+      ticker: { sell: sellPrice },
+    } = await this.cryptoQuoteService.getCurrentBitcoinQuote();
+
+    const amountInBRL = amountInBTC * +sellPrice;
+
+    await this.userRepository.depositMoney(userId, amountInBRL);
+
+    await this.bitcoinBalanceRepository.sell(userId, amountInBTC);
+
+    await this.transactionService.create({
+      userId,
+      type: 'sale',
+      amount: amountInBTC.toString(),
+      pricePerUnit: sellPrice,
+      totalValue: amountInBRL.toString(),
+      date: new Date(),
+    });
+
+    await this.emailService.sendBitcoinSaleEmail(
+      user.email,
+      amountInBTC,
+      amountInBRL,
+    );
   }
 }

@@ -25,11 +25,7 @@ export class DepositService {
       );
     }
 
-    const oldBalance = user.balance;
-
-    const amountToDeposit = +oldBalance + amount;
-
-    await this.userRepository.depositMoney(userId, amountToDeposit);
+    await this.userRepository.depositMoney(userId, amount);
 
     await this.transactionService.create({
       amount: amount.toString(),

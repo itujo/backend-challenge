@@ -41,9 +41,13 @@ export class UserRepository {
   }
 
   async depositMoney(userId: number, amount: number): Promise<User> {
+    const { balance: oldBalance } = await this.getBalance(userId);
+
+    const newBalance = oldBalance + amount;
+
     const [updatedUser] = await dbClient
       .update(users)
-      .set({ balance: amount.toString() })
+      .set({ balance: newBalance.toString() })
       .where(eq(users.id, userId))
       .returning();
 

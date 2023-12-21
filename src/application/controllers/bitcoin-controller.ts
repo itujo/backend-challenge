@@ -4,21 +4,27 @@ import { type AuthRequest } from '../../@types/express';
 import { ApplicationError } from '../../shared/errors';
 
 export class BitcoinController {
-  constructor(private readonly bitcoinPurchaseService: BitcoinService) {}
+  constructor(private readonly bitcoinService: BitcoinService) {}
 
-  async handle(req: AuthRequest, res: Response): Promise<void> {
+  async handlePurchase(req: AuthRequest, res: Response): Promise<void> {
     const userId = req.user?.userId;
     if (!userId) throw new ApplicationError('user not logged in', 401);
 
     const { amount } = req.body;
 
-    const purchased = await this.bitcoinPurchaseService.purchaseBitcoin(
-      userId,
-      +amount,
-    );
+    await this.bitcoinService.purchaseBitcoin(userId, +amount);
 
-    if (purchased) {
-      res.status(204).send();
-    }
+    res.status(204).send();
+  }
+
+  async handleSale(req: AuthRequest, res: Response): Promise<void> {
+    const userId = req.user?.userId;
+    if (!userId) throw new ApplicationError('user not logged in', 401);
+
+    const { amount } = req.body;
+
+    await this.bitcoinService.sellBitcoin(userId, +amount);
+
+    res.status(204).send();
   }
 }
