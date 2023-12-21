@@ -22,7 +22,7 @@ class ServerSetup {
 const serviceSetup = new ServerSetup();
 
 serviceSetup.start().catch((error) => {
-  console.error('Failed to start the server:', error);
+  console.error('failed to start the server:', error);
   process.exit(1);
 });
 
@@ -33,7 +33,7 @@ process.on('SIGTERM', () => {
       process.exit(0);
     })
     .catch((error) => {
-      console.error('Failed to stop the server gracefully:', error);
+      console.error('failed to stop the server gracefully:', error);
       process.exit(1);
     });
 });

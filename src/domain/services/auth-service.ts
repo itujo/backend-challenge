@@ -15,8 +15,12 @@ export class AuthService {
     return token;
   }
 
-  async register(name: string, email: string, password: string): Promise<any> {
+  async register(
+    name: string,
+    email: string,
+    password: string,
+  ): Promise<{ id: number | undefined; name: string; email: string }> {
     const newUser = await this.userService.createUser(name, email, password);
-    return newUser;
+    return { id: newUser.id, name, email };
   }
 }

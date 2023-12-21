@@ -23,7 +23,7 @@ export class CryptoQuoteService {
 
       return response.data;
     } catch (error) {
-      throw new ApplicationError('Failed to fetch Bitcoin quote', 500);
+      throw new ApplicationError('failed to fetch bitcoin quote', 500);
     }
   }
 }
