@@ -5,7 +5,7 @@ export const bitcoinBalances = pgTable('bitcoin_balances', {
   userId: integer('user_id')
     .references(() => users.id)
     .primaryKey(),
-  balance: numeric('balance', { precision: 19, scale: 4 }).notNull(),
+  balance: numeric('balance', { precision: 19, scale: 8 }).notNull(),
   createdAt: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
 });

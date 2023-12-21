@@ -40,7 +40,9 @@ export class EmailService {
       from: 'info@itujo.tech',
       to: email,
       subject: 'Purchase notification',
-      html: `<p>You have purchased <strong>${amountInBTC}BTC</strong> for <strong>R$${amountInBRL}</strong></p>`,
+      html: `<p>You have purchased <strong>${amountInBTC.toFixed(
+        8,
+      )}BTC</strong> for <strong>R$${amountInBRL}</strong></p>`,
     });
 
     if (emailResponse.error) {

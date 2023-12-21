@@ -6,7 +6,7 @@ import { ApplicationError } from '../../shared/errors';
 export class BitcoinBalanceRepository {
   async buy(userId: number, addedBalance: number): Promise<BitcoinBalance> {
     try {
-      const currentBalance = await this.getBalance(userId);
+      const { balance: currentBalance } = await this.getBalance(userId);
 
       const newBalanceInBTC = +currentBalance + addedBalance;
 

@@ -20,8 +20,8 @@ export const transactions = pgTable('transactions', {
     .references(() => users.id)
     .notNull(),
   type: transactionTypeEnum('transaction_type').notNull(),
-  amount: numeric('amount', { precision: 19, scale: 4 }).notNull(),
-  pricePerUnit: numeric('price_per_unit', { precision: 19, scale: 4 }),
+  amount: numeric('amount', { precision: 19, scale: 8 }).notNull(),
+  pricePerUnit: numeric('price_per_unit', { precision: 19, scale: 8 }),
   totalValue: numeric('total_value', { precision: 19, scale: 4 }).notNull(),
   date: timestamp('date').defaultNow(),
   createdAt: timestamp('created_at').defaultNow(),
