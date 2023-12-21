@@ -1,5 +1,5 @@
 import { InvestmentPositionController } from '../../../../application/controllers';
-import { createInvestmentPositionService } from '../../domain/services/investment-position-service-factory';
+import { createInvestmentPositionService } from '../../domain/services';
 
 export function createInvestmentPositionController(): InvestmentPositionController {
   const investmentPositionService = createInvestmentPositionService();

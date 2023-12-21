@@ -4,10 +4,12 @@ import {
   type Response,
   type NextFunction,
 } from 'express';
-import { createBitcoinController } from '../factories/application/controllers';
+import {
+  createBitcoinController,
+  createInvestmentPositionController,
+} from '../factories/application/controllers';
 import { authMiddleware, validateMiddleware } from '../middlewares';
 import { BitcoinSchema } from '../../application/validators';
-import { createInvestmentPositionController } from '../factories/application/controllers/investment-position-controller-factory';
 
 export default (router: Router): void => {
   const bitcoinController = createBitcoinController();
