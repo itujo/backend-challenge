@@ -1,5 +1,5 @@
-import { CryptoQuoteController } from '../../../../application/controllers/crypto-quote-controller';
-import { createCryptoQuoteService } from '../../domain/services/crypto-quote-service-factory';
+import { CryptoQuoteController } from '../../../../application/controllers';
+import { createCryptoQuoteService } from '../../domain/services';
 
 export function createCryptoQuoteController(): CryptoQuoteController {
   const cryptoQuoteService = createCryptoQuoteService();

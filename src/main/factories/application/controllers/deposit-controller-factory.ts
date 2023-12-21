@@ -1,5 +1,5 @@
 import { DepositController } from '../../../../application/controllers';
-import { createDepositService } from '../../domain/services/deposit-service-factory';
+import { createDepositService } from '../../domain/services';
 
 export function createDepositController(): DepositController {
   const depositService = createDepositService();

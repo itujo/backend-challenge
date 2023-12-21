@@ -6,7 +6,7 @@ import {
 } from 'express';
 import { validateMiddleware } from '../middlewares';
 import { CreateUserSchema, LoginSchema } from '../../application/validators';
-import { createAuthController } from '../factories/application/controllers/auth-controller-factory';
+import { createAuthController } from '../factories/application/controllers';
 
 export default (router: Router): void => {
   const authController = createAuthController();

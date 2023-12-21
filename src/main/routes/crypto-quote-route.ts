@@ -4,7 +4,7 @@ import {
   type Response,
   type NextFunction,
 } from 'express';
-import { createCryptoQuoteController } from '../factories/application/controllers/crypto-quote-controller-factory';
+import { createCryptoQuoteController } from '../factories/application/controllers';
 
 export default (router: Router): void => {
   const cryptoQuoteController = createCryptoQuoteController();

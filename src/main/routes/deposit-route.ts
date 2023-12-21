@@ -7,7 +7,7 @@ import {
 import { authMiddleware } from '../middlewares/auth-middleware';
 import { validateMiddleware } from '../middlewares';
 import { DepositSchema } from '../../application/validators';
-import { createDepositController } from '../factories/application/controllers/deposit-controller-factory';
+import { createDepositController } from '../factories/application/controllers';
 
 export default (router: Router): void => {
   const depositController = createDepositController();

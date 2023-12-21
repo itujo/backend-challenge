@@ -5,7 +5,7 @@ import {
   type NextFunction,
 } from 'express';
 import { authMiddleware } from '../middlewares/auth-middleware';
-import { createBalanceController } from '../factories/application/controllers/balance-controller-factory';
+import { createBalanceController } from '../factories/application/controllers';
 
 export default (router: Router): void => {
   const balanceController = createBalanceController();
