@@ -2,11 +2,13 @@ import { ApplicationError } from '../../shared/errors';
 import { type UserRepository } from '../../infra/repositories';
 import { type User } from '../entities';
 import { type EmailService } from '../../infra/services';
+import { type TransactionService } from './transaction-service';
 
 export class DepositService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly emailService: EmailService,
+    private readonly transactionService: TransactionService,
   ) {}
 
   async deposit(userId: number, amount: number): Promise<User> {
@@ -28,6 +30,16 @@ export class DepositService {
     const amountToDeposit = +oldBalance + amount;
 
     await this.userRepository.depositMoney(userId, amountToDeposit);
+
+    await this.transactionService.create({
+      amount: amount.toString(),
+      date: new Date(),
+      totalValue: amount.toString(),
+      type: 'deposit',
+      userId,
+    });
+
+    // this makes the response take longer, if we implement a queue system it will be better
     await this.emailService.sendDepositEmail(user.email, amount);
 
     return user;

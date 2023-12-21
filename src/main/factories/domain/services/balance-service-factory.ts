@@ -1,7 +1,7 @@
-import { UserRepository } from '../../../../infra/repositories';
 import { BalanceService } from '../../../../domain/services';
+import { createUserRepository } from '../../infra/repositories';
 
 export function createBalanceService(): BalanceService {
-  const userRepository = new UserRepository();
+  const userRepository = createUserRepository();
   return new BalanceService(userRepository);
 }

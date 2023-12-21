@@ -1,9 +1,11 @@
 import { DepositService } from '../../../../domain/services';
-import { UserRepository } from '../../../../infra/repositories';
+import { createUserRepository } from '../../infra/repositories';
 import { createEmailService } from '../../infra/services';
+import { createTransactionService } from './transaction-service-factory';
 
 export function createDepositService(): DepositService {
-  const userRepository = new UserRepository();
+  const userRepository = createUserRepository();
   const emailService = createEmailService();
-  return new DepositService(userRepository, emailService);
+  const transactionService = createTransactionService();
+  return new DepositService(userRepository, emailService, transactionService);
 }

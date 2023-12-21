@@ -17,13 +17,30 @@ export class EmailService {
     email: string,
     amount: number,
   ): Promise<CreateEmailResponse> {
-    console.log(`sending email to ${email} with amount ${amount}`);
-
     const emailResponse = await this.resend.emails.send({
       from: 'info@itujo.tech',
       to: email,
       subject: 'Deposit notification',
-      html: `<p>You have deposited <strong>R${amount}</strong> to your account!</p>`,
+      html: `<p>You have deposited <strong>R$${amount}</strong> to your account!</p>`,
+    });
+
+    if (emailResponse.error) {
+      throw new ApplicationError(emailResponse.error.message, 400);
+    }
+
+    return emailResponse;
+  }
+
+  async sendBitcoinPurchaseEmail(
+    email: string,
+    amountInBRL: number,
+    amountInBTC: number,
+  ): Promise<CreateEmailResponse> {
+    const emailResponse = await this.resend.emails.send({
+      from: 'info@itujo.tech',
+      to: email,
+      subject: 'Purchase notification',
+      html: `<p>You have purchased <strong>${amountInBTC}BTC</strong> for <strong>R$${amountInBRL}</strong></p>`,
     });
 
     if (emailResponse.error) {
