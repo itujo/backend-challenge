@@ -1,9 +1,13 @@
 import { ApplicationError } from '../../shared/errors';
 import { type UserRepository } from '../../infra/repositories';
 import { type User } from '../entities';
+import { type EmailService } from '../../infra/services';
 
 export class DepositService {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    private readonly userRepository: UserRepository,
+    private readonly emailService: EmailService,
+  ) {}
 
   async deposit(userId: number, amount: number): Promise<User> {
     const user = await this.userRepository.findUserById(userId);
@@ -24,6 +28,7 @@ export class DepositService {
     const amountToDeposit = +oldBalance + amount;
 
     await this.userRepository.depositMoney(userId, amountToDeposit);
+    await this.emailService.sendDepositEmail(user.email, amount);
 
     return user;
   }

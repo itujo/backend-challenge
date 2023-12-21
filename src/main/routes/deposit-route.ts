@@ -17,7 +17,7 @@ export default (router: Router): void => {
     authMiddleware,
     validateMiddleware(DepositSchema),
     (req: Request, res: Response, next: NextFunction) => {
-      void depositController.handle(req, res).catch(next);
+      depositController.handle(req, res).catch(next);
     },
   );
 };

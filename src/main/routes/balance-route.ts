@@ -14,7 +14,7 @@ export default (router: Router): void => {
     '/account/balance',
     authMiddleware,
     (req: Request, res: Response, next: NextFunction) => {
-      void balanceController.handle(req, res).catch(next);
+      balanceController.handle(req, res).catch(next);
     },
   );
 };

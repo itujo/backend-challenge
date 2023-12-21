@@ -15,7 +15,7 @@ export default (router: Router): void => {
     '/account',
     validateMiddleware(CreateUserSchema),
     (req: Request, res: Response, next: NextFunction) => {
-      void authController.registerUser(req, res).catch(next);
+      authController.registerUser(req, res).catch(next);
     },
   );
 
@@ -23,7 +23,7 @@ export default (router: Router): void => {
     '/login',
     validateMiddleware(LoginSchema),
     (req: Request, res: Response, next: NextFunction) => {
-      void authController.loginUser(req, res).catch(next);
+      authController.loginUser(req, res).catch(next);
     },
   );
 };

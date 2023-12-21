@@ -12,7 +12,7 @@ export default (router: Router): void => {
   router.get(
     '/btc/price',
     (req: Request, res: Response, next: NextFunction) => {
-      void cryptoQuoteController.getCurrentQuote(req, res).catch(next);
+      cryptoQuoteController.getCurrentQuote(req, res).catch(next);
     },
   );
 };
