@@ -50,3 +50,8 @@ Descrição breve do projeto: Este projeto é uma API de investimento em bitcoin
    ```
    npm start
    ```
+
+## Link da documentação
+
+A coleção do postman pode ser importada pelo link
+[backend-challenge-collection.json](https://api.postman.com/collections/31387001-f10906ca-0a16-4436-8923-2d0f7f5657db?access_key=PMAT-01HJ7HCZT4ZZTTA56H96QRXGHM)
