@@ -9,6 +9,7 @@ import type {
 import type { Answer, AnswerStatus } from "@domain/answer/answer.entity";
 import { AnswerMapper } from "../mappers/answer.mapper";
 import type { CreateAnswerInput } from "@infra/graphql/answer/dtos/create-answer.input";
+import { CorrectLessonResponse } from "@app/answer/answer.controller";
 
 @Injectable()
 export class PrismaAnswerRepository implements IAnswerRepository {
@@ -70,11 +71,24 @@ export class PrismaAnswerRepository implements IAnswerRepository {
       this.prisma.answer.count({ where }),
     ]);
 
-    console.log({ data });
-
     return {
       data: data.map((answer) => AnswerMapper.toDomain(answer)),
       total,
     };
+  }
+
+  async updateById(
+    id: string,
+    submissionData: CorrectLessonResponse,
+  ): Promise<Answer> {
+    const updatedSubmission = await this.prisma.answer.update({
+      where: { id },
+      data: {
+        grade: submissionData.grade,
+        status: submissionData.status,
+      },
+    });
+
+    return AnswerMapper.toDomain(updatedSubmission);
   }
 }

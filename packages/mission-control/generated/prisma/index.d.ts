@@ -2078,11 +2078,11 @@ export namespace Prisma {
   }
 
   export type AnswerAvgAggregateOutputType = {
-    grade: Decimal | null
+    grade: number | null
   }
 
   export type AnswerSumAggregateOutputType = {
-    grade: Decimal | null
+    grade: number | null
   }
 
   export type AnswerMinAggregateOutputType = {
@@ -2091,7 +2091,7 @@ export namespace Prisma {
     repositoryUrl: string | null
     createdAt: Date | null
     status: $Enums.AnswerStatus | null
-    grade: Decimal | null
+    grade: number | null
   }
 
   export type AnswerMaxAggregateOutputType = {
@@ -2100,7 +2100,7 @@ export namespace Prisma {
     repositoryUrl: string | null
     createdAt: Date | null
     status: $Enums.AnswerStatus | null
-    grade: Decimal | null
+    grade: number | null
   }
 
   export type AnswerCountAggregateOutputType = {
@@ -2242,7 +2242,7 @@ export namespace Prisma {
     repositoryUrl: string
     createdAt: Date
     status: $Enums.AnswerStatus
-    grade: Decimal | null
+    grade: number | null
     _count: AnswerCountAggregateOutputType | null
     _avg: AnswerAvgAggregateOutputType | null
     _sum: AnswerSumAggregateOutputType | null
@@ -2325,7 +2325,7 @@ export namespace Prisma {
       repositoryUrl: string
       createdAt: Date
       status: $Enums.AnswerStatus
-      grade: Prisma.Decimal | null
+      grade: number | null
     }, ExtArgs["result"]["answer"]>
     composites: {}
   }
@@ -2755,7 +2755,7 @@ export namespace Prisma {
     readonly repositoryUrl: FieldRef<"Answer", 'String'>
     readonly createdAt: FieldRef<"Answer", 'DateTime'>
     readonly status: FieldRef<"Answer", 'AnswerStatus'>
-    readonly grade: FieldRef<"Answer", 'Decimal'>
+    readonly grade: FieldRef<"Answer", 'Int'>
   }
     
 
@@ -3297,20 +3297,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Decimal'
-   */
-  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
-    
-
-
-  /**
-   * Reference to a field of type 'Decimal[]'
-   */
-  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -3321,6 +3307,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -3386,7 +3386,7 @@ export namespace Prisma {
     repositoryUrl?: StringFilter<"Answer"> | string
     createdAt?: DateTimeFilter<"Answer"> | Date | string
     status?: EnumAnswerStatusFilter<"Answer"> | $Enums.AnswerStatus
-    grade?: DecimalNullableFilter<"Answer"> | Decimal | DecimalJsLike | number | string | null
+    grade?: IntNullableFilter<"Answer"> | number | null
     challenge?: XOR<ChallengeNullableScalarRelationFilter, ChallengeWhereInput> | null
   }
 
@@ -3409,7 +3409,7 @@ export namespace Prisma {
     repositoryUrl?: StringFilter<"Answer"> | string
     createdAt?: DateTimeFilter<"Answer"> | Date | string
     status?: EnumAnswerStatusFilter<"Answer"> | $Enums.AnswerStatus
-    grade?: DecimalNullableFilter<"Answer"> | Decimal | DecimalJsLike | number | string | null
+    grade?: IntNullableFilter<"Answer"> | number | null
     challenge?: XOR<ChallengeNullableScalarRelationFilter, ChallengeWhereInput> | null
   }, "id">
 
@@ -3436,7 +3436,7 @@ export namespace Prisma {
     repositoryUrl?: StringWithAggregatesFilter<"Answer"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Answer"> | Date | string
     status?: EnumAnswerStatusWithAggregatesFilter<"Answer"> | $Enums.AnswerStatus
-    grade?: DecimalNullableWithAggregatesFilter<"Answer"> | Decimal | DecimalJsLike | number | string | null
+    grade?: IntNullableWithAggregatesFilter<"Answer"> | number | null
   }
 
   export type ChallengeCreateInput = {
@@ -3497,7 +3497,7 @@ export namespace Prisma {
     repositoryUrl: string
     createdAt?: Date | string
     status?: $Enums.AnswerStatus
-    grade?: Decimal | DecimalJsLike | number | string | null
+    grade?: number | null
     challenge?: ChallengeCreateNestedOneWithoutAnswerInput
   }
 
@@ -3507,7 +3507,7 @@ export namespace Prisma {
     repositoryUrl: string
     createdAt?: Date | string
     status?: $Enums.AnswerStatus
-    grade?: Decimal | DecimalJsLike | number | string | null
+    grade?: number | null
   }
 
   export type AnswerUpdateInput = {
@@ -3515,7 +3515,7 @@ export namespace Prisma {
     repositoryUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAnswerStatusFieldUpdateOperationsInput | $Enums.AnswerStatus
-    grade?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    grade?: NullableIntFieldUpdateOperationsInput | number | null
     challenge?: ChallengeUpdateOneWithoutAnswerNestedInput
   }
 
@@ -3525,7 +3525,7 @@ export namespace Prisma {
     repositoryUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAnswerStatusFieldUpdateOperationsInput | $Enums.AnswerStatus
-    grade?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    grade?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type AnswerCreateManyInput = {
@@ -3534,7 +3534,7 @@ export namespace Prisma {
     repositoryUrl: string
     createdAt?: Date | string
     status?: $Enums.AnswerStatus
-    grade?: Decimal | DecimalJsLike | number | string | null
+    grade?: number | null
   }
 
   export type AnswerUpdateManyMutationInput = {
@@ -3542,7 +3542,7 @@ export namespace Prisma {
     repositoryUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAnswerStatusFieldUpdateOperationsInput | $Enums.AnswerStatus
-    grade?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    grade?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type AnswerUncheckedUpdateManyInput = {
@@ -3551,7 +3551,7 @@ export namespace Prisma {
     repositoryUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAnswerStatusFieldUpdateOperationsInput | $Enums.AnswerStatus
-    grade?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    grade?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3665,15 +3665,15 @@ export namespace Prisma {
     not?: NestedEnumAnswerStatusFilter<$PrismaModel> | $Enums.AnswerStatus
   }
 
-  export type DecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type ChallengeNullableScalarRelationFilter = {
@@ -3749,20 +3749,20 @@ export namespace Prisma {
     _max?: NestedEnumAnswerStatusFilter<$PrismaModel>
   }
 
-  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
     _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type AnswerCreateNestedManyWithoutChallengeInput = {
@@ -3825,12 +3825,12 @@ export namespace Prisma {
     set?: $Enums.AnswerStatus
   }
 
-  export type NullableDecimalFieldUpdateOperationsInput = {
-    set?: Decimal | DecimalJsLike | number | string | null
-    increment?: Decimal | DecimalJsLike | number | string
-    decrement?: Decimal | DecimalJsLike | number | string
-    multiply?: Decimal | DecimalJsLike | number | string
-    divide?: Decimal | DecimalJsLike | number | string
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type ChallengeUpdateOneWithoutAnswerNestedInput = {
@@ -3935,15 +3935,15 @@ export namespace Prisma {
     not?: NestedEnumAnswerStatusFilter<$PrismaModel> | $Enums.AnswerStatus
   }
 
-  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -3963,17 +3963,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedEnumAnswerStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.AnswerStatus | EnumAnswerStatusFieldRefInput<$PrismaModel>
     in?: $Enums.AnswerStatus[] | ListEnumAnswerStatusFieldRefInput<$PrismaModel>
@@ -3984,20 +3973,31 @@ export namespace Prisma {
     _max?: NestedEnumAnswerStatusFilter<$PrismaModel>
   }
 
-  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
     _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type AnswerCreateWithoutChallengeInput = {
@@ -4005,7 +4005,7 @@ export namespace Prisma {
     repositoryUrl: string
     createdAt?: Date | string
     status?: $Enums.AnswerStatus
-    grade?: Decimal | DecimalJsLike | number | string | null
+    grade?: number | null
   }
 
   export type AnswerUncheckedCreateWithoutChallengeInput = {
@@ -4013,7 +4013,7 @@ export namespace Prisma {
     repositoryUrl: string
     createdAt?: Date | string
     status?: $Enums.AnswerStatus
-    grade?: Decimal | DecimalJsLike | number | string | null
+    grade?: number | null
   }
 
   export type AnswerCreateOrConnectWithoutChallengeInput = {
@@ -4051,7 +4051,7 @@ export namespace Prisma {
     repositoryUrl?: StringFilter<"Answer"> | string
     createdAt?: DateTimeFilter<"Answer"> | Date | string
     status?: EnumAnswerStatusFilter<"Answer"> | $Enums.AnswerStatus
-    grade?: DecimalNullableFilter<"Answer"> | Decimal | DecimalJsLike | number | string | null
+    grade?: IntNullableFilter<"Answer"> | number | null
   }
 
   export type ChallengeCreateWithoutAnswerInput = {
@@ -4103,7 +4103,7 @@ export namespace Prisma {
     repositoryUrl: string
     createdAt?: Date | string
     status?: $Enums.AnswerStatus
-    grade?: Decimal | DecimalJsLike | number | string | null
+    grade?: number | null
   }
 
   export type AnswerUpdateWithoutChallengeInput = {
@@ -4111,7 +4111,7 @@ export namespace Prisma {
     repositoryUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAnswerStatusFieldUpdateOperationsInput | $Enums.AnswerStatus
-    grade?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    grade?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type AnswerUncheckedUpdateWithoutChallengeInput = {
@@ -4119,7 +4119,7 @@ export namespace Prisma {
     repositoryUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAnswerStatusFieldUpdateOperationsInput | $Enums.AnswerStatus
-    grade?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    grade?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type AnswerUncheckedUpdateManyWithoutChallengeInput = {
@@ -4127,7 +4127,7 @@ export namespace Prisma {
     repositoryUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: EnumAnswerStatusFieldUpdateOperationsInput | $Enums.AnswerStatus
-    grade?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    grade?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
 

@@ -12,7 +12,7 @@ export class AnswerMapper {
       prismaAnswer.challengeId,
       prismaAnswer.repositoryUrl,
       AnswerStatus[prismaAnswer.status],
-      prismaAnswer.grade?.toNumber() ?? null,
+      prismaAnswer.grade ?? null,
       prismaAnswer.challenge ?? null,
       prismaAnswer.createdAt,
       prismaAnswer.id,
