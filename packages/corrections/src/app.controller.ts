@@ -1,5 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
+import { KafkaProducerService } from './kafka-producer.service';
 
 interface CorrectLessonMessage {
   value: {
@@ -17,17 +18,23 @@ interface CorrectLessonResponse {
 
 @Controller()
 export class AppController {
+  constructor(private readonly kafkaProducer: KafkaProducerService) {}
+
   @MessagePattern('challenge.correction')
-  correctLesson(
+  async correctLesson(
     @Payload() message: CorrectLessonMessage,
-  ): CorrectLessonResponse {
+  ): Promise<CorrectLessonResponse> {
     const { submissionId, repositoryUrl } = message.value;
 
-    return {
+    const result: CorrectLessonResponse = {
       submissionId,
       repositoryUrl,
       grade: Math.floor(Math.random() * 10) + 1,
       status: 'Done',
     };
+
+    await this.kafkaProducer.emit('challenge.correction.result', result);
+
+    return result;
   }
 }
