@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Challenge {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  createdAt   DateTime @default(now())
+  answer      Answer[]
+
+  @@map("challenges")
+}
+
+model Answer {
+  id            String       @id @default(uuid())
+  challenge     Challenge?   @relation(fields: [challengeId], references: [id])
+  challengeId   String?
+  repositoryUrl String
+  createdAt     DateTime     @default(now())
+  status        AnswerStatus @default(Pending)
+  grade         Decimal?     @db.Decimal(1, 1)
+
+  @@map("answers")
+}
+
+enum AnswerStatus {
+  Pending
+  Error
+  Done
+}

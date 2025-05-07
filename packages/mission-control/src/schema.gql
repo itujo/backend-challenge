@@ -1,0 +1,95 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""challenge"""
+type ChallengeModel {
+  id: ID!
+  title: String!
+  description: String!
+  createdAt: Date!
+}
+
+type ListChallengeResult {
+  data: [ChallengeModel!]!
+  total: Float!
+  page: Float!
+  perPage: Float!
+}
+
+"""answer"""
+type AnswerModel {
+  id: ID!
+  challenge: ChallengeModel
+  challengeId: String
+  repositoryUrl: String!
+  createdAt: Date!
+  status: AnswerStatus!
+  grade: Float
+}
+
+enum AnswerStatus {
+  Pending
+  Error
+  Done
+}
+
+type ListAnswerResult {
+  data: [AnswerModel!]!
+  total: Float!
+  page: Float!
+  perPage: Float!
+}
+
+"""Date custom scalar type"""
+scalar Date
+
+type Query {
+  challenges(pagination: PaginationInput, filters: ListChallengeFiltersInput): ListChallengeResult!
+  answers(pagination: PaginationInput, filters: ListAnswerFiltersInput): ListAnswerResult!
+}
+
+input PaginationInput {
+  page: Float
+  perPage: Float
+}
+
+input ListChallengeFiltersInput {
+  title: String
+  description: String
+}
+
+input ListAnswerFiltersInput {
+  challengeId: String
+  startDate: Date
+  endDate: Date
+  status: String
+}
+
+type Mutation {
+  createChallenge(newChallengeData: CreateChallengeInput!): ChallengeModel!
+  deleteChallenge(challengeId: String!): String!
+  updateChallenge(challengeId: String!, updateData: UpdateChallengeInput!): UpdateChallengeResult!
+  answerChallenge(newAnswerChallengeData: CreateAnswerInput!): AnswerModel!
+}
+
+input CreateChallengeInput {
+  title: String!
+  description: String!
+}
+
+union UpdateChallengeResult = ChallengeModel | ErrorMessage
+
+type ErrorMessage {
+  message: String!
+}
+
+input UpdateChallengeInput {
+  title: String
+  description: String
+}
+
+input CreateAnswerInput {
+  challengeId: String!
+  repositoryUrl: String!
+}
